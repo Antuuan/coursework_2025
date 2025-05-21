@@ -14,3 +14,4 @@ $conn->exec($sql);
 $sql = "USE shop";
 $conn->exec($sql);
 echo "DB created successfully";
+
