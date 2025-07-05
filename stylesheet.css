@@ -1,10 +1,37 @@
 .nav_colour{
     background-color: rgb(0, 97, 47);
     color: white;
-    outline: 1px solid white;
     margin-bottom: 0px;
     padding-bottom: 0px;
 }
+
+/* sets the outlines to none */
+.outline_desktop{
+    outline: none;
+}
+
+/* when the screen is wider than 992 pixles (which is the point which the hamburger menu dissapears) set outline  */
+@media (min-width: 992px){
+    .outline_desktop{
+        outline: 1px solid white;
+    }
+}
+
+/* set the paddings to none */
+.padding_desktop{
+    padding-top: none;
+    padding-bottom: none;
+}
+
+/* when the screen is thinner than 992 pixles (which is the point which the hamburger menu apears) set paddings  */
+@media(max-width: 992px){
+    .padding_desktop{
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+}
+
+
 .top_row{
     background-color: rgb(0, 97, 47);
     color: white;
@@ -12,6 +39,11 @@
     padding-bottom: 15px;
     font-size: 30px;
     border-bottom: 1px solid white;
+}
+
+.main_button{
+    font-size: 30px;
+    outline: none;
 }
 .navbar-toggler-icon
 {

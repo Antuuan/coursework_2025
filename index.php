@@ -17,7 +17,7 @@
     <div class="container-fluid w-100 top_row">
         <div class="row w-100">
             <div class="col text-center">
-                DZT
+                <a href="index.php"><button type="button" class="btn text-white main_button">DZT</button></a>
             </div>
         </div>
     </div>
@@ -34,11 +34,11 @@
                     <!-- collapse and navbar-collapse means this div is collapseable -->
                     <!-- using text-center to make the buttons centered once the menu opens -->
                     <div class="collapse navbar-collapse text-center" id="navbar_nav">
-                        <ul class="navbar-nav mx-auto">
-                            <li class="nav-item nav_colour"><button type="button" class="btn text-white">ACCOUNT</button></li>
-                            <li class="nav-item nav_colour"><a href="login.php"><button type="button" class="btn text-white">LOGIN</button></a></li>
-                            <li class="nav-item nav_colour"><a href="signUp.php"><button type="button" class="btn text-white">SIGNUP</button></a></li>
-                            <li class="nav-item nav_colour"><a href="Books.php"><button type="button" class="btn text-white">ADD BOOK</button></a></li>
+                        <ul class="navbar-nav mx-auto nav_colour">
+                            <li class="nav-item outline_desktop padding_desktop"><button type="button" class="btn text-white">ACCOUNT</button></li>
+                            <li class="nav-item outline_desktop padding_desktop"><a href="login.php"><button type="button" class="btn text-white">LOGIN</button></a></li>
+                            <li class="nav-item outline_desktop padding_desktop"><a href="signUp.php"><button type="button" class="btn text-white">SIGNUP</button></a></li>
+                            <li class="nav-item outline_desktop padding_desktop"><a href="Books.php"><button type="button" class="btn text-white">ADD BOOK</button></a></li>
                         </ul>
                     </div>
                 </div>
