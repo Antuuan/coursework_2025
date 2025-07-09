@@ -16,16 +16,21 @@
     <!-- w-100 class makes the row and container take up 100% of the screen width -->
     <div class="container-fluid w-100 top_row">
         <div class="row w-100">
+            <!-- by using the bootstrap 5 grid system, the top row is split into 3 columns, one bigger one in the center and smaller ones on the sides -->
             <div class="col text-center">
-                <a href="basket.php"><button type="button" class="btn icons"><img src="basket_icon.png" style="width: 3.5vw; height: auto;"></a>
-                <a href="favourites.php"><button type="button" class="btn icons"><img src="favourites_icon.png" style="width: 3.5vw; height: auto;"></a>
+                <a href="basket.php"><button type="button" class="btn icons"><img src="basket_icon.png" style="width: 3.5vw; height: auto;"></button></a>
+                <a href="favourites.php"><button type="button" class="btn icons"><img src="favourites_icon.png" style="width: 3.5vw; height: auto;"></button></a>
             </div>
             <div class="col-6 text-center main_button">
-                <a href="index.php"><button type="button" class="btn icons"><img src="logo.png" style="width: 10vw; height: auto;"></a>
+                <a href="index.php">
+                    <button type="button" class="btn" style="width: 13vw; height: auto;">
+                        <img src="logo.png" alt="logo" style="max-width: 100%; max-height: 100%;">
+                    </button>
+                </a>
             </div>
             <div class="col text-center">
-                <a href=".php"><button type="button" class="btn icons"><img src="search_icon.png" style="width: 3.7vw; height: auto;"></a>
-                <a href=".php"><button type="button" class="btn icons"><img src="account_icon.png" style="width: 3.2vw; height: auto;"></a>
+                <a href=".php"><button type="button" class="btn"><img src="search_icon.png" style="width: 3.7vw; height: auto;"></button></a>
+                <a href=".php"><button type="button" class="btn"><img src="account_icon.png" style="width: 3.5vw; height: auto;"></button></a>
             </div>
         </div>
     </div>
