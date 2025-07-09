@@ -17,7 +17,15 @@
     <div class="container-fluid w-100 top_row">
         <div class="row w-100">
             <div class="col text-center">
-                <a href="index.php"><button type="button" class="btn text-white main_button">DZT</button></a>
+                <a href="basket.php"><button type="button" class="btn icons"><img src="basket_icon.png" style="width: 3.5vw; height: auto;"></a>
+                <a href="favourites.php"><button type="button" class="btn icons"><img src="favourites_icon.png" style="width: 3.5vw; height: auto;"></a>
+            </div>
+            <div class="col-6 text-center main_button">
+                <a href="index.php"><button type="button" class="btn icons"><img src="logo.png" style="width: 10vw; height: auto;"></a>
+            </div>
+            <div class="col text-center">
+                <a href=".php"><button type="button" class="btn icons"><img src="search_icon.png" style="width: 3.7vw; height: auto;"></a>
+                <a href=".php"><button type="button" class="btn icons"><img src="account_icon.png" style="width: 3.2vw; height: auto;"></a>
             </div>
         </div>
     </div>
