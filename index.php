@@ -20,6 +20,7 @@
     </style>
 
 </head>
+
 <body class="bg-light">
 <!-- flex-column to allow the rows to stack vertically -->
 <nav class="navbar navbar-expand-lg flex-column nav_colour">
@@ -37,7 +38,7 @@
                 </a>
             </div>
             <div class="col-6 text-center main_button">
-                <a href="index.php" class="btn btn-primary" style="width: 13vw; height: auto;">
+                <a href="index.php" class="btn btn-primary" style="width: auto; height: 74px;">
                     <img src="logo.png" alt="logo" style="max-width: 100%; max-height: 100%;">
                 </a>
             </div>
