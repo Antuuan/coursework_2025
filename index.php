@@ -9,6 +9,16 @@
     <link href="stylesheet.css" rel="stylesheet">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+    <!-- bootstrap overrides, idk y it doesnt work in the css sheet but it works here -->
+    <style>
+        .btn-primary {
+        background-color: rgb(0, 97, 47) !important;
+        border-color: rgba(0, 97, 47, 0) !important;
+    }
+
+    </style>
+
 </head>
 <body class="bg-light">
 <!-- flex-column to allow the rows to stack vertically -->
@@ -18,19 +28,26 @@
         <div class="row w-100">
             <!-- by using the bootstrap 5 grid system, the top row is split into 3 columns, one bigger one in the center and smaller ones on the sides -->
             <div class="col text-center">
-                <a href="basket.php"><button type="button" class="btn icons"><img src="basket_icon.png" style="width: 3.5vw; height: auto;"></button></a>
-                <a href="favourites.php"><button type="button" class="btn icons"><img src="favourites_icon.png" style="width: 3.5vw; height: auto;"></button></a>
+                <!-- resizes button and makes the image fill the entire button instead of resizing the image -->
+                <a href="basket.php" class="btn btn-primary" style="width: 5vw; height: auto;">
+                    <img src="basket_icon.png" style="max-width: 100%; max-height: 100%;">
+                </a>
+                <a href="favourites.php" class="btn btn-primary" style="width: 5vw; height: auto;">
+                    <img src="favourites_icon.png" style="max-width: 100%; max-height: 100%;">
+                </a>
             </div>
             <div class="col-6 text-center main_button">
-                <a href="index.php">
-                    <button type="button" class="btn" style="width: 13vw; height: auto;">
-                        <img src="logo.png" alt="logo" style="max-width: 100%; max-height: 100%;">
-                    </button>
+                <a href="index.php" class="btn btn-primary" style="width: 13vw; height: auto;">
+                    <img src="logo.png" alt="logo" style="max-width: 100%; max-height: 100%;">
                 </a>
             </div>
             <div class="col text-center">
-                <a href=".php"><button type="button" class="btn"><img src="search_icon.png" style="width: 3.7vw; height: auto;"></button></a>
-                <a href=".php"><button type="button" class="btn"><img src="account_icon.png" style="width: 3.5vw; height: auto;"></button></a>
+                <a href=".php" class="btn btn-primary" style="width: 5vw; height: auto;">
+                    <img src="search_icon.png" style="max-width: 100%; max-height: 100%;">
+                </a>
+                <a href="account.php" class="btn btn-primary" style="width: 5vw; height: auto;">
+                    <img src="account_icon.png" style="max-width: 100%; max-height: 100%;">
+                </a>
             </div>
         </div>
     </div>
@@ -48,10 +65,10 @@
                     <!-- using text-center to make the buttons centered once the menu opens -->
                     <div class="collapse navbar-collapse text-center" id="navbar_nav">
                         <ul class="navbar-nav mx-auto nav_colour">
-                            <li class="nav-item outline_desktop padding_desktop"><button type="button" class="btn text-white">ACCOUNT</button></li>
-                            <li class="nav-item outline_desktop padding_desktop"><a href="login.php"><button type="button" class="btn text-white">LOGIN</button></a></li>
-                            <li class="nav-item outline_desktop padding_desktop"><a href="signUp.php"><button type="button" class="btn text-white">SIGNUP</button></a></li>
-                            <li class="nav-item outline_desktop padding_desktop"><a href="Books.php"><button type="button" class="btn text-white">ADD BOOK</button></a></li>
+                            <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">ACCOUNT</a></li>
+                            <li class="nav-item outline_desktop padding_desktop"><a href="login.php" class="btn text-white">LOGIN</a></li>
+                            <li class="nav-item outline_desktop padding_desktop"><a href="signUp.php" class="btn text-white">SIGNUP</a></li>
+                            <li class="nav-item outline_desktop padding_desktop"><a href="Books.php" class="btn text-white">ADD BOOK</a></li>
                         </ul>
                     </div>
                 </div>
