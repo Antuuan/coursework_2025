@@ -19,8 +19,8 @@
 
 /* set the paddings to none */
 .padding_desktop{
-    padding-top: none;
-    padding-bottom: none;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 /* when the screen is thinner than 992 pixles (which is the point which the hamburger menu apears) set paddings  */
@@ -45,4 +45,37 @@
 .navbar-toggler-icon
 {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='4' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* .icon_size{
+    height: 60px;
+    width: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+@media(max-width: 992px){
+    .icon_size{
+        pointer-events: none;
+        display: none;
+        padding: 0;
+        height: 0px;
+        width: 0px;
+    }
+} */
+
+/* makes the extra buttons in the hamburger menu dissapear when the screen is bigger than 992px wide */
+.other_buttons{
+    visibility: visible;
+}
+
+@media(min-width: 992px){
+    .other_buttons{
+        pointer-events: none;
+        display: none;
+    }
+}
+
+.row{
+    margin: 0;
 }

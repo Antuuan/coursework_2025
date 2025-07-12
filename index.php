@@ -13,9 +13,30 @@
     <!-- bootstrap overrides, idk y it doesnt work in the css sheet but it works here -->
     <style>
         .btn-primary {
-        background-color: rgb(0, 97, 47) !important;
-        border-color: rgba(0, 97, 47, 0) !important;
-    }
+            background-color: rgb(0, 97, 47) !important;
+            border-color: rgba(0, 97, 47, 0) !important;
+        }
+
+        /* for some reason this doesn't work when it's put in the stylesheet, but does when I put it in the <style> section of the head */
+        /* styles the buttons */
+        .icon_size{
+            height: 60px;
+            width: auto;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        /* makes the buttons disappear when the screen is thinner than 992px */
+        @media(max-width: 992px){
+            .icon_size{
+                pointer-events: none;
+                display: none;
+                padding: 0;
+                /* makes sure they dont stack and take up space in the navbar */
+                height: 0px;
+                width: 0px;
+            }
+        }
 
     </style>
 
@@ -30,10 +51,10 @@
             <!-- by using the bootstrap 5 grid system, the top row is split into 3 columns, one bigger one in the center and smaller ones on the sides -->
             <div class="col text-center">
                 <!-- resizes button and makes the image fill the entire button instead of resizing the image -->
-                <a href="basket.php" class="btn btn-primary" style="width: 5vw; height: auto;">
+                <a href="basket.php" class="btn btn-primary icon_size">
                     <img src="basket_icon.png" style="max-width: 100%; max-height: 100%;">
                 </a>
-                <a href="favourites.php" class="btn btn-primary" style="width: 5vw; height: auto;">
+                <a href="favourites.php" class="btn btn-primary icon_size">
                     <img src="favourites_icon.png" style="max-width: 100%; max-height: 100%;">
                 </a>
             </div>
@@ -43,10 +64,11 @@
                 </a>
             </div>
             <div class="col text-center">
-                <a href=".php" class="btn btn-primary" style="width: 5vw; height: auto;">
+                <a href=".php" class="btn btn-primary icon_size">
                     <img src="search_icon.png" style="max-width: 100%; max-height: 100%;">
                 </a>
-                <a href="account.php" class="btn btn-primary" style="width: 5vw; height: auto;">
+                <!-- to keep account from dissapearing at samll screen sizes, use custom style instead of the icon_size class -->
+                <a href="account.php" class="btn btn-primary" style="width: auto; height: 60px; padding-left: 10px; padding-right: 10px;">
                     <img src="account_icon.png" style="max-width: 100%; max-height: 100%;">
                 </a>
             </div>
@@ -68,8 +90,8 @@
                         <ul class="navbar-nav mx-auto nav_colour">
                             <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">ACCOUNT</a></li>
                             <li class="nav-item outline_desktop padding_desktop"><a href="login.php" class="btn text-white">LOGIN</a></li>
-                            <li class="nav-item outline_desktop padding_desktop"><a href="signUp.php" class="btn text-white">SIGNUP</a></li>
-                            <li class="nav-item outline_desktop padding_desktop"><a href="Books.php" class="btn text-white">ADD BOOK</a></li>
+                            <li class="nav-item outline_desktop padding_desktop"><a href="sign_up.php" class="btn text-white">SIGNUP</a></li>
+                            <li class="nav-item outline_desktop padding_desktop"><a href="books.php" class="btn text-white">ADD BOOK</a></li>
                         </ul>
                     </div>
                 </div>
@@ -78,5 +100,15 @@
     </div>
 </nav>
 
+<!-- this div has the id of navbar_nav which means the dropdown menu also takes from this div, but its not part of the <nav> -->
+<div class="collapse navbar-collapse text-center nav_colour other_buttons" id="navbar_nav">
+    <!-- list-unstyled is part of bootstrap 5 that removes the bullet points from <ul> -->
+    <ul class="list-unstyled">
+        <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">BUTTON1</a></li>
+        <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">BUTTON2</a></li>
+        <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">BUTTON3</a></li>
+        <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">BUTTON4</a></li>
+    </ul>
+</div>
 
 </body>
