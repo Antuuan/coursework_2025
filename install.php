@@ -35,7 +35,6 @@ card_no VARCHAR(300) NOT NULL,
 card_name VARCHAR(300) NOT NULL,
 card_expiry VARCHAR(5) NOT NULL,
 cvc VARCHAR(300) NOT NULL,
-role TINYINT(1) NOT NULL);
 ");
 
 //executes the SQL statement

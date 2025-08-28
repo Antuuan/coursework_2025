@@ -6,6 +6,7 @@
     
 </head>
 <body>
+<!-- form that sends all the information to add_users.php where it will be added to the DB -->
 <form action="add_users.php" method="post">
     username:<input type="text" name="username"><br>
     E-mail Address:<input type="text" name="email"><br>
@@ -17,16 +18,6 @@
     Name on Card:<input type="text" name="card_name"><br>
     Expiry:<input type="text" name="card_expiry"><br>
     CVC:<input type="text" name="cvc"><br>
-    Role:
-    <select name="role">
-        
-        <option value="user">user</option>
-        <option value="admin">administrator</option>
-    
-    </select><br>
-
-    <input type="submit" value="submit">
-</form>
 
 <?php
 	include_once('connection.php');
