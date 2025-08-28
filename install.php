@@ -25,6 +25,7 @@ $statement=$conn->prepare("
 DROP TABLE IF EXISTS tbl_users;
 CREATE TABLE tbl_users
 (user_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+password VARCHAR(100) NOT NULL,
 email VARCHAR(100) NOT NULL,
 username VARCHAR(50) NOT NULL,
 phone_no VARCHAR(11) NOT NULL,
@@ -33,7 +34,8 @@ postcode VARCHAR(7) NOT NULL,
 card_no VARCHAR(300) NOT NULL,
 card_name VARCHAR(300) NOT NULL,
 card_expiry VARCHAR(5) NOT NULL,
-cvc VARCHAR(300) NOT NULL);
+cvc VARCHAR(300) NOT NULL,
+role TINYINT(1) NOT NULL);
 ");
 
 //executes the SQL statement
