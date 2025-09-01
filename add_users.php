@@ -1,10 +1,11 @@
 <?php
 // echo($_POST);
-// header("Location:users.php");
+header("Location:signup.php");
 include_once("connection.php");
 array_map("htmlspecialchars",$_POST);
 print_r($_POST);
 
+// puts the values from the users page into the database
 $stmt = $conn->prepare("INSERT INTO tbl_users (user_id,username,address,email,password,postcode,phone_no,card_no,card_name,card_expiry,cvc)
 VALUES (NULL,:username,:address,:email,:password,:postcode,:phone_no,:card_no,:card_name,:card_expiry,:cvc)");
 
