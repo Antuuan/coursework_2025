@@ -18,6 +18,8 @@
     Name on Card:<input type="text" name="card_name"><br>
     Expiry:<input type="text" name="card_expiry"><br>
     CVC:<input type="text" name="cvc"><br>
+    <button type="submit">submit</button>
+</form>
 
 <?php
 	include_once('connection.php');
