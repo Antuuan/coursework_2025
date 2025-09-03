@@ -40,6 +40,11 @@
 
     </style>
 
+    <?php
+        // starts the session to allow use of $_SESSION global
+        session_start();
+    ?>
+
 </head>
 
 <body class="bg-light">
@@ -111,5 +116,7 @@
     </ul>
 </div>
 
-
+<?php
+    // echo($_SESSION["logged_in"].$_SESSION["username"].$_SESSION["role"]);
+?>
 </body>
