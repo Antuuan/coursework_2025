@@ -43,6 +43,19 @@
     <?php
         // starts the session to allow use of $_SESSION global
         session_start();
+
+        // isset checks if variable exist and whether it is null or not, === to check if values are equal and the same type
+        if(isset($_SESSION["logged_in"])&&$_SESSION["logged_in"]===true){
+            $account="account.php";
+            $basket="basket.php";
+            $fav="favs.php";
+        }
+        else{
+            $account="login.php";
+            $basket="login.php";
+            $fav="favs.php";
+        }
+
     ?>
 
 </head>
@@ -56,10 +69,10 @@
             <!-- by using the bootstrap 5 grid system, the top row is split into 3 columns, one bigger one in the center and smaller ones on the sides -->
             <div class="col text-center">
                 <!-- resizes button and makes the image fill the entire button instead of resizing the image -->
-                <a href="basket.php" class="btn btn-primary icon_size">
+                <a href="<?php echo($basket);?>" class="btn btn-primary icon_size">
                     <img src="basket_icon.png" style="max-width: 100%; max-height: 100%;">
                 </a>
-                <a href="favourites.php" class="btn btn-primary icon_size">
+                <a href="<?php echo($fav);?>" class="btn btn-primary icon_size">
                     <img src="favourites_icon.png" style="max-width: 100%; max-height: 100%;">
                 </a>
             </div>
@@ -73,7 +86,7 @@
                     <img src="search_icon.png" style="max-width: 100%; max-height: 100%;">
                 </a>
                 <!-- to keep account from dissapearing at samll screen sizes, use custom style instead of the icon_size class -->
-                <a href="account.php" class="btn btn-primary" style="width: auto; height: 60px; padding-left: 10px; padding-right: 10px;">
+                <a href="<?php echo($account);?>" class="btn btn-primary" style="width: auto; height: 60px; padding-left: 10px; padding-right: 10px;">
                     <img src="account_icon.png" style="max-width: 100%; max-height: 100%;">
                 </a>
             </div>
@@ -116,7 +129,6 @@
     </ul>
 </div>
 
-<?php
-    // echo($_SESSION["logged_in"].$_SESSION["username"].$_SESSION["role"]);
-?>
+
+
 </body>
