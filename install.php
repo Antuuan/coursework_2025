@@ -84,6 +84,9 @@ CREATE TABLE tbl_items
 seller_id INT(6) NOT NULL,
 status TINYINT(1) NOT NULL,
 price FLOAT(10) NOT NULL,
+item_name VARCHAR(100) NOT NULL,
+item_description TEXT,
+pictures TEXT NOT NULL,
 start_date VARCHAR(8) NOT NULL,
 end_date VARCHAR(8) NOT NULL);
 ");

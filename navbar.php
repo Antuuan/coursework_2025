@@ -12,31 +12,6 @@
    
     <!-- bootstrap overrides, idk y it doesnt work in the css sheet but it works here -->
     <style>
-        .btn-primary {
-            background-color: rgb(0, 97, 47) !important;
-            border-color: rgba(0, 97, 47, 0) !important;
-        }
-
-        /* for some reason this doesn't work when it's put in the stylesheet, but does when I put it in the <style> section of the head */
-        /* styles the buttons */
-        .icon_size{
-            height: 60px;
-            width: auto;
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-
-        /* makes the buttons disappear when the screen is thinner than 992px */
-        @media(max-width: 992px){
-            .icon_size{
-                pointer-events: none;
-                display: none;
-                padding: 0;
-                /* makes sure they dont stack and take up space in the navbar */
-                height: 0px;
-                width: 0px;
-            }
-        }
 
     </style>
 
@@ -70,24 +45,25 @@
             <div class="col text-center">
                 <!-- resizes button and makes the image fill the entire button instead of resizing the image -->
                 <a href="<?php echo($basket);?>" class="btn btn-primary icon_size">
-                    <img src="basket_icon.png" style="max-width: 100%; max-height: 100%;">
+                    <img src="icons\basket_icon.png" style="max-width: 100%; max-height: 100%;">
                 </a>
                 <a href="<?php echo($fav);?>" class="btn btn-primary icon_size">
-                    <img src="favourites_icon.png" style="max-width: 100%; max-height: 100%;">
+                    <img src="icons\favourites_icon.png" style="max-width: 100%; max-height: 100%;">
                 </a>
             </div>
             <div class="col-6 text-center main_button">
                 <a href="index.php" class="btn btn-primary" style="width: auto; height: 74px;">
-                    <img src="logo.png" alt="logo" style="max-width: 100%; max-height: 100%;">
+                    <img src="icons\logo.png" alt="logo" style="max-width: 100%; max-height: 100%;">
                 </a>
             </div>
             <div class="col text-center">
-                <a href=".php" class="btn btn-primary icon_size">
-                    <img src="search_icon.png" style="max-width: 100%; max-height: 100%;">
+                <!-- uses the bootstrap data-bs target to tell the code to look at the search bar, and data-bs-toggle="collapse" tells will toggle the search bar's collapse value to true or false -->
+                <a href=".php" class="btn btn-primary icon_size" type="button" data-bs-toggle="collapse" data-bs-target="#search_bar">
+                    <img src="icons\search_icon.png" style="max-width: 100%; max-height: 100%;">
                 </a>
                 <!-- to keep account from dissapearing at samll screen sizes, use custom style instead of the icon_size class -->
                 <a href="<?php echo($account);?>" class="btn btn-primary" style="width: auto; height: 60px; padding-left: 10px; padding-right: 10px;">
-                    <img src="account_icon.png" style="max-width: 100%; max-height: 100%;">
+                    <img src="icons\account_icon.png" style="max-width: 100%; max-height: 100%;">
                 </a>
             </div>
         </div>
@@ -114,6 +90,15 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <!-- a search bar at the bottom that will appear when search button is clikced -->
+    <div id="search_bar" class="collapse bg-light p-3 border-bottom">
+        <div class="container">
+            <form action="search.php" method="post" class="d-flex">
+                <input class="form-control" type="search" name="q" placeholder="Search...">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
         </div>
     </div>
 </nav>
