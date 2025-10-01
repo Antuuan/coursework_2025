@@ -25,6 +25,7 @@ $stmt->bindParam(":price",$_POST["price"]);
 $stmt->bindParam(":item_name",$_POST["item_name"]);
 $stmt->bindParam(":item_description",$_POST["item_description"]);
 $stmt->bindParam(":start_date",$start_date);
+$stmt->execute();
 
 // gets the latest inserted id in DB which would be item_id from above
 $item_id=$conn->lastInsertId();
