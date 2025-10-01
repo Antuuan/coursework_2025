@@ -3,7 +3,7 @@ session_start();
 include_once("connection.php");
 // gets rid of special characters
 array_map("htmlspecialchars", $_POST);
-header("Location:index.php")
+header("Location:index.php");
 
 // uses the username value stored in SESSION global to get user_id from DB
 $user=$_SESSION["username"];
@@ -11,7 +11,7 @@ $stmt=$conn->prepare("SELECT user_id FROM tbl_users WHERE username=:seller");
 $stmt->bindParam(":seller",$user);
 $stmt->execute();
 $seller=$stmt->fetch(PDO::FETCH_ASSOC);
-// print_r($seller);
+print_r($seller);
 
 // insert everything into tbl_items except images
 $stmt=$conn->prepare("INSERT INTO tbl_items(item_id,seller_id,status,price,item_name,item_description,start_date,end_date)

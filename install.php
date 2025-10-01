@@ -86,7 +86,7 @@ status TINYINT(1) NOT NULL,
 price FLOAT(10) NOT NULL,
 item_name VARCHAR(100) NOT NULL,
 item_description TEXT,
-start_date VARCHAR(8) NOT NULL,
+start_date VARCHAR(10) NOT NULL,
 end_date VARCHAR(8));
 ");
 
