@@ -34,7 +34,7 @@ postcode VARCHAR(7) NOT NULL,
 card_no VARCHAR(300) NOT NULL,
 card_name VARCHAR(300) NOT NULL,
 card_expiry VARCHAR(5) NOT NULL,
-cvc VARCHAR(300) NOT NULL,
+cvc VARCHAR(300) NOT NULL)
 ");
 
 //executes the SQL statement
@@ -86,9 +86,8 @@ status TINYINT(1) NOT NULL,
 price FLOAT(10) NOT NULL,
 item_name VARCHAR(100) NOT NULL,
 item_description TEXT,
-pictures TEXT NOT NULL,
 start_date VARCHAR(8) NOT NULL,
-end_date VARCHAR(8) NOT NULL);
+end_date VARCHAR(8));
 ");
 
 //executes the SQL statement
@@ -109,3 +108,26 @@ password VARCHAR(100) NOT NULL);
 $statement->execute();
 $statement->closeCursor();
 echo "<br>admins table created";
+
+$statement=$conn->prepare("
+DROP TABLE IF EXISTS tbl_pics;
+CREATE TABLE tbl_pics
+(pic_id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+image_name TEXT NOT NULL);
+");
+
+$statement->execute();
+$statement->closeCursor();
+echo "<br>pics table created";
+
+$statement=$conn->prepare("
+DROP TABLE IF EXISTS tbl_items_n_pics;
+CREATE TABLE tbl_items_n_pics
+(pic_id INT(10) NOT NULL,
+item_id INT(10) NOT NULL);
+"); 
+
+$statement->execute();
+$statement->closeCursor();
+echo "<br>admins table created";
+

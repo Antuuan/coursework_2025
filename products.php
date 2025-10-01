@@ -23,7 +23,7 @@
 <form action="add_products.php" method="post" enctype="multipart/form-data">
     Item Name:<input type="text" name="item_name" maxlength="100"><br>
     Item Description:<input type="text" name="item_description"><br>
-    Images:<input type="file" id="pics" name="pics" accept="image/*"><br>
+    Images:<input type="file" id="pic" name="pics[]" accept="image/*" multiple><br>
     Price:<input type="text" name="price"><br>
     <button type="submit">submit</button>
 </form>
