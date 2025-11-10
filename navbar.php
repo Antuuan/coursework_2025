@@ -11,9 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
    
     <!-- bootstrap overrides, idk y it doesnt work in the css sheet but it works here -->
-    <style>
-
-    </style>
 
     <?php
         // starts the session to allow use of $_SESSION global
