@@ -15,31 +15,42 @@ include("navbar.php")
 	include_once('connection.php');
 	$stmt = $conn->prepare("
         SELECT tbl_items.item_name as ItName, tbl_items.item_description as Itdesc, tbl_items.price as Itprice,
-        tbl_pics.image_name as imname
+        GROUP_CONCAT(tbl_pics.image_name) AS imageurls
         FROM tbl_items_n_pics
         INNER JOIN tbl_items
         ON tbl_items.item_id = tbl_items_n_pics.item_id
         INNER JOIN tbl_pics
         ON tbl_pics.pic_id = tbl_items_n_pics.pic_id
-
-        GROUP BY
-        ItName,
-        Itdesc,
-        Itprice,
-        imname
     ");
 	$stmt->execute();	
     
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
-    {
-        print_r($row);
-        echo("<br>");
-      
-        echo ("<img src=uploads\\".$row["imname"]." height='100px'>");
-        
+// displays all items
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        // spliiting the single string of image names into individual names
+        $images=explode(",",$row["imageurls"]);
+        echo ("<img src=uploads\\".$images[0]." height='100px'>");
+        // display name and description
         echo($row["ItName"].' '.$row["Itdesc"]."<br>");
+        echo("<br>");
     }
+?>
 
-?>   
+
+
+
+
+
+
+
+
+
+
+<?php 
+// might be useful later!!
+    // looping through the images
+    // foreach ($images as $img){
+    //     echo ("<img src=uploads\\".$img." height='100px'>");
+    // }
+?>
 
 </body>
