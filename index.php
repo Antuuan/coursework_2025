@@ -32,30 +32,26 @@ include("navbar.php")
 
 <?php
 // displays all items
+$count=0;
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-        $count=0;
         //print_r($row);
         // spliiting the single string of image names into individual names
         $images=explode(",",$row["imageurls"]);
         // make new row every 5th item
-        if ($count==0){
+        if ($count%4==0){
             echo("<div class='row'>");
         }
         // displays first image and desc in a column
-        echo ("<div class='col-sm3'><img src=uploads\\".$images[0]." height='100px'><br>");
+        echo ("<div class='col'><img src=uploads\\".$images[0]." height='100px'><br>");
         // display name and description
         echo($row["ItName"].' '.$row["Itdesc"]."<br></div>");
-        echo("<br>");
         
-        if ($count==0){
+        if ($count%4==3){
             echo("</div>");
         }
+        $count=$count+1;
     }
 ?>
-
-
-
-
 
 
 
