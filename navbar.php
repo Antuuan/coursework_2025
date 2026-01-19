@@ -79,10 +79,10 @@
                     <!-- using text-center to make the buttons centered once the menu opens -->
                     <div class="collapse navbar-collapse text-center" id="navbar_nav">
                         <ul class="navbar-nav mx-auto nav_colour">
-                            <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">ACCOUNT</a></li>
-                            <li class="nav-item outline_desktop padding_desktop"><a href="login.php" class="btn text-white">LOGIN</a></li>
-                            <li class="nav-item outline_desktop padding_desktop"><a href="sign_up.php" class="btn text-white">SIGNUP</a></li>
-                            <li class="nav-item outline_desktop padding_desktop"><a href="books.php" class="btn text-white">ADD BOOK</a></li>
+                            <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">ELECTRONICS</a></li>
+                            <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">CLOTHING</a></li>
+                            <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">MUSIC</a></li>
+                            <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">ACEDEMICS/ARTS</a></li>
                         </ul>
                     </div>
                 </div>

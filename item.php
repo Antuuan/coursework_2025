@@ -1,5 +1,6 @@
 <?php
     include_once("connection.php");
+    include("navbar.php");
 
     // checks of the id exists and if it s a number, the second check prevents errors from user entered url
     if (!isset($_GET["id"]) || !is_numeric($_GET["id"])) {
@@ -38,3 +39,34 @@
     $images = explode(',', $row['imageurls']);
     print_r($images)
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Page title uses the product name -->
+    <title><?= htmlspecialchars($item["item_name"]) ?></title>
+</head>
+<body>
+
+<!-- displaying product info -->
+<h1><?= htmlspecialchars($item["item_name"]) ?></h1>
+
+<p><strong>Price:</strong>£<?= htmlspecialchars($item["price"]) ?></p>
+
+<p><strong>Seller:</strong><?= htmlspecialchars($item["username"]) ?></p>
+
+<!--nl2br() keeps line breaks from textarea input -->
+<p><?= nl2br(htmlspecialchars($item["item_description"])) ?></p>
+
+<!-- images -->
+<h3>Images</h3>
+
+<?php
+    // looping through the images
+    foreach ($images as $img){
+        echo ("<img src=uploads\\".$img." height='100px'>");
+    }
+?>
+
+</body>
+</html>
