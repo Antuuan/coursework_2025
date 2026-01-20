@@ -47,9 +47,9 @@ if ($item['status'] != 1) {
 // binds seller id
 $seller_id = (int)$item['seller_id'];
 
-//puts info into tbl_order
+//puts info into tbl_order (0=compelete, 1=active)
 $stmt = $conn->prepare("INSERT INTO tbl_order(status, seller_id, buyer_id, review, stars) 
-    VALUES(0, :seller_id, :buyer_id, NULL, 0)");
+    VALUES(1, :seller_id, :buyer_id, NULL, 0)");
 
 $stmt->bindParam(":seller_id",$seller_id);
 $stmt->bindParam(":buyer_id",$buyer_id);
