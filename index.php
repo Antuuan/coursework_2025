@@ -39,12 +39,12 @@ $count=0;
         $images=explode(",",$row["imageurls"]);
         // make new row every 5th item
         if ($count%4==0){
-            echo("<div class='row'>");
+            echo("<div class='row p-4'>");
         }
         // displays first image and desc in a column
-        echo ("<div class='col'>
+        echo ("<div class='col text-center'>
         <a href='item.php?id=".$row['ItID']."'>
-        <img src=uploads\\".$images[0]." height='100px'><br>");
+        <img src=uploads\\".$images[0]." height='200px'><br>");
         // display name and description
         echo($row["ItName"].' '.$row["Itdesc"]."<br></div>");
         
@@ -53,20 +53,6 @@ $count=0;
         }
         $count=$count+1;
     }
-?>
-
-
-
-
-
-
-
-<?php 
-// might be useful later!!
-    // looping through the images
-    // foreach ($images as $img){
-    //     echo ("<img src=uploads\\".$img." height='100px'>");
-    // }
 ?>
 
 </body>

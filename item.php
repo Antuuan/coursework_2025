@@ -20,7 +20,7 @@
     $stmt->bindParam(":item_id", $item_id);
     $stmt->execute();
     $item = $stmt->fetch(PDO::FETCH_ASSOC);
-    print_r($item);
+    // print_r($item);
 
 // gets images from DB
     $stmt = $conn->prepare("
@@ -37,7 +37,7 @@
 	$stmt->execute();
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     $images = explode(',', $row['imageurls']);
-    print_r($images)
+    // print_r($images)
 ?>
 
 <!DOCTYPE html>
