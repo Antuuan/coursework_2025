@@ -34,9 +34,12 @@
             // uses the session superglobal to store data about if the user is logged in, which can be accessed on other pages
             $_SESSION["logged_in"]=true;
             $_SESSION["username"]=$user["username"];
+            $_SESSION["user_id"]=$user["user_id"];
             $_SESSION["role"]="0";
 
-            header("Location: index.php");
+            print_r($_SESSION);
+
+            // header("Location: index.php");
             exit;
         }
         else{

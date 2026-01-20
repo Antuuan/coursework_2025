@@ -68,5 +68,11 @@
     }
 ?>
 
+<br><br>
+<form action="add_to_cart.php" method="post">
+    <input type="hidden" name="item_id" value="<?= $item_id ?>">
+    <button type="submit" class="btn btn-success">Add to Cart</button>
+</form>
+
 </body>
 </html>
