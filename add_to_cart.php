@@ -47,22 +47,44 @@ if ($item['status'] != 1) {
 // binds seller id
 $seller_id = (int)$item['seller_id'];
 
-//puts info into tbl_order (0=compelete, 1=active)
-$stmt = $conn->prepare("INSERT INTO tbl_order(status, seller_id, buyer_id, review, stars) 
-    VALUES(1, :seller_id, :buyer_id, NULL, 0)");
+// begins the transaction
+$conn->beginTransaction();
 
-$stmt->bindParam(":seller_id",$seller_id);
-$stmt->bindParam(":buyer_id",$buyer_id);
-$stmt->execute();
+try {
 
-// grabs the last inserted auto-incremented id
-$order_id = $conn->lastInsertId();
+    //puts info into tbl_order (0=compelete, 1=active)
+    $stmt = $conn->prepare("INSERT INTO tbl_order(status, seller_id, buyer_id, review, stars) 
+        VALUES(1, :seller_id, :buyer_id, NULL, 0)");
 
-// Add item to tbl_order_contents
-$stmt = $conn->prepare("INSERT INTO tbl_order_contents(order_id, item_id, qty) 
-    VALUES(:order_id, :item_id, 1)");
+    $stmt->bindParam(":seller_id",$seller_id);
+    $stmt->bindParam(":buyer_id",$buyer_id);
+    $stmt->execute();
+
+    // grabs the last inserted auto-incremented id
+    $order_id = $conn->lastInsertId();
+
+    // Add item to tbl_order_contents
+    $stmt = $conn->prepare("INSERT INTO tbl_order_contents(order_id, item_id, qty) 
+        VALUES(:order_id, :item_id, 1)");
     $stmt->bindParam(":order_id",$order_id);
     $stmt->bindParam(":item_id",$item_id);
     $stmt->execute();
+
+    // Everything ok then commit
+    $conn->commit();
+
+    // Success redirect
+    header("Location:basket.php");
+    exit;
+}
+
+catch (Exception $e) {
+    // Something went wrong → rollback
+    $conn->rollBack();
+
+    // redircts back to product page
+    header("Location: item.php?id=$item_id&error=add_to_cart_failed");
+    exit;
+}
 
 ?>
