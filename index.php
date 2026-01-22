@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <head>
-
 </head>
-
 <body>
 
 <!--getes the navbar onto page -->
