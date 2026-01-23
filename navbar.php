@@ -19,7 +19,7 @@
         // isset checks if variable exist and whether it is null or not, === to check if values are equal and the same type
         if(isset($_SESSION["logged_in"])&&$_SESSION["logged_in"]===true){
             $account="account.php";
-            $basket="basket.php";
+            $basket="cart.php";
             $fav="favs.php";
         }
         else{
