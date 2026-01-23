@@ -26,6 +26,7 @@ include("navbar.php")
 	$stmt->execute();	
 ?>
 
+<!-- products display -->
 <div class="container-fluid">
 
 <?php

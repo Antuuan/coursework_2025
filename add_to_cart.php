@@ -17,14 +17,11 @@ if (!isset($_POST['item_id']) || !is_numeric($_POST['item_id'])) {
     header("Location: index.php?error=invalid_item");
     exit;
 }
-echo("<br>");
-print_r($buyer_id);
+// print_r($buyer_id);
 
 $item_id = (int)$_POST['item_id'];
 
-echo("<br>");
-print_r($item_id);
-echo("<br>");
+// print_r($item_id);
 
 // grabs info
 $stmt = $conn->prepare("
@@ -36,7 +33,7 @@ $stmt->bindParam(":item_id",$item_id);
 $stmt->execute();
 $item = $stmt->fetch(PDO::FETCH_ASSOC);
 
-print_r($item);
+// print_r($item);
 
 // checks if item is available
 if ($item['status'] != 1) {
