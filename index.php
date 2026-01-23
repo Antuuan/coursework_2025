@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <head>
-
 </head>
-
 <body>
 
 <!--getes the navbar onto page -->
@@ -28,6 +26,7 @@ include("navbar.php")
 	$stmt->execute();	
 ?>
 
+<!-- products display -->
 <div class="container-fluid">
 
 <?php
