@@ -19,7 +19,8 @@ $stmt = $conn->prepare("
         tbl_items.price,
         tbl_items.item_description,
         tbl_order_contents.qty,
-        GROUP_CONCAT(tbl_pics.image_name) AS imageurls
+        GROUP_CONCAT(tbl_pics.image_name) AS imageurls,
+        tbl_order.status
     FROM tbl_order
     INNER JOIN tbl_order_contents
     ON tbl_order_contents.order_id = tbl_order.order_id
