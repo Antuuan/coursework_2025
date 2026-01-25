@@ -79,6 +79,7 @@
                     <!-- using text-center to make the buttons centered once the menu opens -->
                     <div class="collapse navbar-collapse text-center" id="navbar_nav">
                         <ul class="navbar-nav mx-auto nav_colour">
+                            <li class="nav-item outline_desktop padding_desktop"><a href="products.php" class="btn text-white">CREATE NEW LISTING</a></li>
                             <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">ELECTRONICS</a></li>
                             <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">CLOTHING</a></li>
                             <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">MUSIC</a></li>
@@ -104,7 +105,7 @@
 <div class="collapse navbar-collapse text-center nav_colour other_buttons" id="navbar_nav">
     <!-- list-unstyled is part of bootstrap 5 that removes the bullet points from <ul> -->
     <ul class="list-unstyled">
-        <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">BUTTON1</a></li>
+        <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">CREATE NEW LISTING</a></li>
         <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">BUTTON2</a></li>
         <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">BUTTON3</a></li>
         <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">BUTTON4</a></li>

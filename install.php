@@ -87,7 +87,7 @@ price FLOAT(10) NOT NULL,
 item_name VARCHAR(100) NOT NULL,
 item_description TEXT,
 start_date VARCHAR(10) NOT NULL,
-end_date VARCHAR(8));
+end_date VARCHAR(10));
 ");
 
 //executes the SQL statement

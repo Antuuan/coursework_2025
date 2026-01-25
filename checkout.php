@@ -17,12 +17,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_purchase'])) 
     try {
         // Update all active orders (status = 1) to completed (status = 0)
         $stmt = $conn->prepare("
-            UPDATE tbl_order 
+            UPDATE tbl_order
             SET status = 0 
             WHERE buyer_id = :buyer_id 
               AND status = 1
         ");
         $stmt->bindParam(":buyer_id", $buyer_id);
+        $stmt->execute();
+
+        $date = date("Y-m-d");
+        $stmt = $conn->prepare("
+            UPDATE tbl_items
+            INNER JOIN tbl_order_contents
+            ON tbl_order_contents.item_id = tbl_items.item_id
+            INNER JOIN tbl_order ON tbl_order.order_id = tbl_order_contents.order_id
+            SET tbl_items.status = 0,
+                tbl_items.end_date = :date
+            WHERE tbl_order.buyer_id = :buyer_id 
+              AND tbl_order.status = 0
+              AND tbl_items.status = 1
+        ");
+        $stmt->bindParam(":buyer_id", $buyer_id);
+        $stmt->bindParam(":date", $date);
         $stmt->execute();
 
         $conn->commit();
