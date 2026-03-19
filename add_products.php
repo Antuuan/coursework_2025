@@ -1,9 +1,13 @@
 <?php
+header("Location:index.php");
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
 include_once("connection.php");
 // gets rid of special characters
 array_map("htmlspecialchars", $_POST);
-header("Location:index.php");
+
 
 // uses the username value stored in SESSION global to get user_id from DB
 $user=$_SESSION["username"];

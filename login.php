@@ -8,6 +8,8 @@
     <input type="submit" value="login">
 </form>
 
+<a href='signup.php'>Sing Up</a>
+
 <?php
 // connects to the DB
     session_start();

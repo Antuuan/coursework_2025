@@ -5,7 +5,8 @@
 
 <!--getes the navbar onto page -->
 <?php
-include("navbar.php")
+include("navbar.php");
+//print_r($_SESSION);
 ?>
 
 <?php

@@ -2,7 +2,7 @@
 
 $servername = 'localhost';
 $username = 'root';
-$password= '';
+$password= '123';
 //variables for connecting to server, no database name as it's not created yet
 
 //connects to server
@@ -30,7 +30,7 @@ email VARCHAR(100) NOT NULL,
 username VARCHAR(50) NOT NULL,
 phone_no VARCHAR(11) NOT NULL,
 address VARCHAR(100) NOT NULL,
-postcode VARCHAR(7) NOT NULL,
+postcode VARCHAR(8) NOT NULL,
 card_no VARCHAR(300) NOT NULL,
 card_name VARCHAR(300) NOT NULL,
 card_expiry VARCHAR(5) NOT NULL,
