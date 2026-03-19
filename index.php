@@ -5,7 +5,8 @@
 
 <!--getes the navbar onto page -->
 <?php
-include("navbar.php")
+include("navbar.php");
+//print_r($_SESSION);
 ?>
 
 <?php
@@ -19,6 +20,7 @@ include("navbar.php")
         ON tbl_items.item_id = tbl_items_n_pics.item_id
         INNER JOIN tbl_pics
         ON tbl_pics.pic_id = tbl_items_n_pics.pic_id
+        WHERE tbl_items.status = 1
         GROUP BY 
         tbl_items.item_id, tbl_items.item_name, tbl_items.item_description, tbl_items.price;
 

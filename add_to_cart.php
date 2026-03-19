@@ -71,7 +71,7 @@ try {
     $conn->commit();
 
     // Success redirect
-    header("Location:basket.php");
+    header("Location:cart.php");
     exit;
 }
 
