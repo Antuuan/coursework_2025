@@ -2,7 +2,7 @@
 
 $servername = 'localhost';
 $username = 'root';
-$password= '123';
+$password= '';
 //variables for connecting to server, no database name as it's not created yet
 
 //connects to server

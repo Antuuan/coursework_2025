@@ -21,10 +21,10 @@
 <!-- form that sends all the information to add_users.php where it will be added to the DB -->
 <!-- need enctype to make files work -->
 <form action="add_products.php" method="post" enctype="multipart/form-data">
-    Item Name:<input type="text" name="item_name" maxlength="100"><br>
-    Item Description:<input type="text" name="item_description"><br>
-    Images:<input type="file" id="pic" name="pics[]" accept="image/*" multiple><br>
-    Price:<input type="text" name="price"><br>
+    Item Name:<input type="text" name="item_name" maxlength="100" required><br>
+    Item Description:<input type="text" name="item_description" required><br>
+    Images:<input type="file" id="pic" name="pics[]" accept="image/*" multiple required><br>
+    Price:<input type="number" name="price" required><br>
     <button type="submit">submit</button>
 </form>
 

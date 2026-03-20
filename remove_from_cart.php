@@ -64,12 +64,12 @@ try {
     $conn->commit();
 
     // Redirect back to cart
-    //header("Location: cart.php?removed=1");
+    header("Location: cart.php?removed=1");
     exit;
 
 }
 catch (Exception $e) {
     $conn->rollBack();
-    //header("Location: cart.php?error=remove_failed");
+    header("Location: cart.php?error=remove_failed");
     exit;
 }
