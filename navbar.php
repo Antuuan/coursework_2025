@@ -3,9 +3,9 @@
     <title>DZT</title>
     <!-- importing bootstrap -->
     <!-- Latest compiled and minified CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Latest compiled JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
     <link href="stylesheet.css" rel="stylesheet">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -91,10 +91,16 @@
         </div>
     </div>
     <!-- a search bar at the bottom that will appear when search button is clikced -->
+    <!-- Collapsible search bar (toggled by search icon) -->
     <div id="search_bar" class="collapse bg-light p-3 border-bottom">
         <div class="container">
-            <form action="search.php" method="post" class="d-flex">
-                <input class="form-control" type="search" name="q" placeholder="Search...">
+            <form action="index.php" method="get" class="d-flex">
+                <input class="form-control me-2" 
+                    type="search" 
+                    name="q" 
+                    placeholder="Search products..." 
+                    value="<?= htmlspecialchars($search_query ?? '') ?>"
+                    aria-label="Search">
                 <button class="btn btn-primary" type="submit">Search</button>
             </form>
         </div>
@@ -106,12 +112,9 @@
     <!-- list-unstyled is part of bootstrap 5 that removes the bullet points from <ul> -->
     <ul class="list-unstyled">
         <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">CREATE NEW LISTING</a></li>
-        <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">BUTTON2</a></li>
-        <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">BUTTON3</a></li>
-        <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white">BUTTON4</a></li>
+        <li class="nav-item outline_desktop padding_desktop"><a href=".php" class="btn text-white"  data-bs-toggle="collapse" data-bs-target="#search_bar">SEARCH</a></li>
     </ul>
 </div>
-
 
 
 </body>

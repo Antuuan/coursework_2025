@@ -1,122 +1,121 @@
-<h1>Edit Profile</h1>
+<?php
+include("navbar.php");              // Navigation bar with search toggle
+include_once("connection.php");     // PDO database connection
 
-<!-- Success / Error messages would go here -->
+// 2. Get and clean the search keyword from URL (GET)
+// Using GET so search term appears in URL (bookmarkable, shareable, no resubmit warnings)
+$search_query = trim($_GET['q'] ?? '');  // Get 'q' parameter or empty string
+$search_active = !empty($search_query);  // Flag: true if user entered a search term
 
-<form method="post">
-    Email Address:<br>
-    <input type="email" name="email" value="<?= htmlspecialchars($user['email'] ?? '') ?>" required><br><br>
-    Phone Number:<br>
-    <input type="text" name="phone_no" value="<?= htmlspecialchars($user['phone_no'] ?? '') ?>" required><br><br>
-    Address:<br>
-    <input type="text" name="address" value="<?= htmlspecialchars($user['address'] ?? '') ?>" required><br><br>
-    Postcode:<br>
-    <input type="text" name="postcode" value="<?= htmlspecialchars($user['postcode'] ?? '') ?>" required><br><br>
-    <h3>Card Details</h3>
-    Card Number:<br>
-    <input type="text" name="card_no" value="<?= htmlspecialchars($user['card_no'] ?? '') ?>" required><br><br>
-    Name on Card:<br>
-    <input type="text" name="card_name" value="<?= htmlspecialchars($user['card_name'] ?? '') ?>" required><br><br>
-    Expiry Date (MM/YY):<br>
-    <input type="text" name="card_expiry" value="<?= htmlspecialchars($user['card_expiry'] ?? '') ?>" required><br><br>
-    CVC:<br>
-    <input type="text" name="cvc" value="<?= htmlspecialchars($user['cvc'] ?? '') ?>" required><br><br>
-    <h3>Change Password (optional)</h3>
-    New Password:<br>
-    <input type="password" name="new_password" placeholder="Leave blank to keep current password"><br><br>
-    <button type="submit">Save Changes</button>
-</form>
+// 3. Build the SQL query safely with prepared statements
+// Base query – selects item details + all images grouped together
+$sql = "
+    SELECT 
+        tbl_items.item_id AS ItID,
+        tbl_items.item_name AS ItName,
+        tbl_items.item_description AS Itdesc,
+        tbl_items.price AS Itprice,
+        GROUP_CONCAT(tbl_pics.image_name) AS imageurls
+    FROM tbl_items_n_pics
+    INNER JOIN tbl_items ON tbl_items.item_id = tbl_items_n_pics.item_id
+    INNER JOIN tbl_pics ON tbl_pics.pic_id = tbl_items_n_pics.pic_id
+";
+
+// Array for any WHERE parameters (prevents SQL injection)
+$params = [];
+
+// Array to build WHERE conditions
+$where_clauses = [];
+
+// Add search filter if user entered a keyword
+if ($search_active) {
+    // Search in name OR description (case-insensitive via %wildcards%)
+    $where_clauses[] = "(tbl_items.item_name LIKE :search OR tbl_items.item_description LIKE :search)";
+    $search_param = "%$search_query%";           // % matches anything before/after term
+    $params[':search'] = $search_param;
+}
+
+// Only show active/available items (optional but recommended)
+$where_clauses[] = "tbl_items.status = 1";
+
+// Combine all conditions with AND
+if (!empty($where_clauses)) {
+    $sql .= " WHERE " . implode(" AND ", $where_clauses);
+}
+
+// Group by item so each product appears once (with all its images)
+$sql .= " GROUP BY tbl_items.item_id";
+
+// Order by newest first (or change to price, name, etc.)
+$sql .= " ORDER BY tbl_items.item_id DESC";
+
+// 4. Execute the prepared query safely
+$stmt = $conn->prepare($sql);
+$stmt->execute($params);               // $params binds :search if used
+$items = $stmt->fetchAll(PDO::FETCH_ASSOC);  // Get all matching rows as array
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Edit Profile</title>
+    <title><?= $search_active ? 'Search Results' : 'All Products' ?></title>
 </head>
 <body class="bg-light">
 
 <div class="container my-5">
-    <h1 class="mb-4">Edit Profile</h1>
+    <!-- Page heading – shows search term or "All Products" -->
+    <h1 class="mb-4">
+        <?php if ($search_active): ?>
+            Search Results for "<?= htmlspecialchars($search_query) ?>"
+            (<?= count($items) ?> found)
+        <?php else: ?>
+            All Products
+        <?php endif; ?>
+    </h1>
 
-    <?php if ($success): ?>
-        <div class="alert alert-success">
-            Profile updated successfully!
+    <!-- No results message (only shown when searching) -->
+    <?php if (empty($items) && $search_active): ?>
+        <div class="alert alert-info text-center py-5">
+            <h4>No results found</h4>
+            <p>Try different keywords or browse all products.</p >
+            Clear Search
         </div>
-    <?php elseif ($error): ?>
-        <div class="alert alert-danger">
-            <?= htmlspecialchars($error) ?>
+
+    <!-- Display items in responsive Bootstrap grid -->
+    <?php else: ?>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <?php foreach ($items as $item): 
+                // Split comma-separated image names into array
+                $images = $item['imageurls'] ? explode(',', $item['imageurls']) : [];
+                // Use first image as thumbnail (or fallback)
+                $first_image = !empty($images) ? trim($images[0]) : 'placeholder.jpg';
+            ?>
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <!-- Thumbnail image -->
+                        < img src="uploads/<?= htmlspecialchars($first_image) ?>" 
+                             class="card-img-top" 
+                             alt="<?= htmlspecialchars($item['ItName']) ?>"
+                             style="height: 200px; object-fit: cover;">
+
+                        <div class="card-body text-center">
+                            <h5 class="card-title"><?= htmlspecialchars($item['ItName']) ?></h5>
+                            <p class="card-text text-muted">
+                                <?= htmlspecialchars(substr($item['Itdesc'], 0, 60)) ?>...
+                            </p >
+                            <p class="card-text fw-bold">£<?= number_format($item['Itprice'], 2) ?></p >
+                            <!-- Link to full product detail -->
+                            <a href="item.php?id=<?= $item['ItID'] ?>" class="btn btn-primary btn-sm">
+                                View Item
+                            </a >
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
     <?php endif; ?>
-
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <form method="post">
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label>Email Address</label>
-                        <input type="email" name="email" class="form-control" 
-                               value="<?= htmlspecialchars($user['email'] ?? '') ?>" required>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label>Phone Number</label>
-                        <input type="text" name="phone_no" class="form-control" 
-                               value="<?= htmlspecialchars($user['phone_no'] ?? '') ?>" required>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label>Address</label>
-                    <input type="text" name="address" class="form-control" 
-                           value="<?= htmlspecialchars($user['address'] ?? '') ?>" required>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label>Postcode</label>
-                        <input type="text" name="postcode" class="form-control" 
-                               value="<?= htmlspecialchars($user['postcode'] ?? '') ?>" required>
-                    </div>
-                </div>
-
-                <h5 class="mt-4 mb-3">Card Details</h5>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label>Card Number</label>
-                        <input type="text" name="card_no" class="form-control" 
-                               value="<?= htmlspecialchars($user['card_no'] ?? '') ?>" required>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label>Name on Card</label>
-                        <input type="text" name="card_name" class="form-control" 
-                               value="<?= htmlspecialchars($user['card_name'] ?? '') ?>" required>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label>Expiry Date (MM/YY)</label>
-                        <input type="text" name="card_expiry" class="form-control" 
-                               value="<?= htmlspecialchars($user['card_expiry'] ?? '') ?>" required>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label>CVC</label>
-                        <input type="text" name="cvc" class="form-control" 
-                               value="<?= htmlspecialchars($user['cvc'] ?? '') ?>" required>
-                    </div>
-                </div>
-
-                <h5 class="mt-4 mb-3">Change Password (optional)</h5>
-                <div class="mb-3">
-                    <label>New Password</label>
-                    <input type="password" name="new_password" class="form-control" 
-                           placeholder="Leave blank to keep current password">
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-lg w-100 mt-4">
-                    Save Changes
-                </button>
-            </form>
-        </div>
-    </div>
 </div>
 
 </body>
